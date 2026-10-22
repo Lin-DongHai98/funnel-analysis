@@ -1,0 +1,23 @@
+# 电商网站转化漏斗分析 - 依赖清单
+# 安装：pip install -r requirements.txt
+
+# ---- 数据处理 ----
+pandas>=1.5
+numpy>=1.23
+
+# ---- 数据库连接 ----
+# 注意：本项目 notebook 中存在未经 text() 包装的裸 SQL（建视图 v_behavior），
+# SQLAlchemy 2.x 起不再隐式接受裸字符串，会直接报错。
+# 因此这里锁定 1.4 及以上但低于 2.0；若需升级到 2.x，请先把
+# conn.execute(sql_view) 改为 conn.execute(text(sql_view))。
+SQLAlchemy>=1.4,<2.0
+PyMySQL>=1.0
+
+# ---- 可视化 ----
+pyecharts>=2.0
+
+# ---- 环境变量管理 ----
+python-dotenv>=0.21
+
+# ---- 运行环境 ----
+notebook>=6.5
