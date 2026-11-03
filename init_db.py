@@ -39,6 +39,9 @@ from dotenv import load_dotenv
 # ----------------------------------------------------------------------
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
+# 兜底：项目目录没有 .env 时，从用户家目录读取（本机 .env 统一放在家目录）
+if not os.getenv("DB_USER"):
+    load_dotenv(Path.home() / ".env")
 
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
