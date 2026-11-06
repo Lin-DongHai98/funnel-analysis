@@ -52,12 +52,8 @@ DB_NAME = os.getenv("DB_NAME_FUNNEL", "funnel_analysis")
 if not DB_USER or not DB_PASSWORD:
     sys.exit("未读取到 DB_USER / DB_PASSWORD，请先复制 .env.example 为 .env 并填写。")
 
-# 默认 CSV：优先用项目内 data/ 目录，找不到再退回本机路径
-_CSV_CANDIDATES = [
-    BASE_DIR / "data" / "user_behavior.csv",
-    Path(r"D:\hhh\桌面\数据集\用户行为分析\user_behavior.csv"),
-]
-DEFAULT_CSV = next((p for p in _CSV_CANDIDATES if p.exists()), _CSV_CANDIDATES[0])
+# 默认 CSV：项目内 data/ 目录，其他位置用 --csv 参数指定
+DEFAULT_CSV = BASE_DIR / "data" / "user_behavior.csv"
 
 # ----------------------------------------------------------------------
 # 2. SQL 模板
